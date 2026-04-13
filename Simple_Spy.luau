@@ -14,7 +14,7 @@ local Players = game:GetService("Players")
 local CoreGui = game:GetService("CoreGui")
 local Highlight =
 	loadstring(
-		game:HttpGet("https://github.com/exxtremestuffs/SimpleSpySource/raw/master/highlight.lua")
+		game:HttpGet("https://raw.githubusercontent.com/Amigo8006/W31rd_Hub/refs/heads/main/Highlights_SimpleSpy.Luau")
 	)()
 
 local SimpleSpy2 = Instance.new("ScreenGui")
@@ -1997,7 +1997,7 @@ if not _G.SimpleSpyExecuted then
 		RemoteTemplate.Parent = nil
 		FunctionTemplate.Parent = nil
 		codebox = Highlight.new(CodeBox)
-		codebox:setRaw("https://raw.githubusercontent.com/Amigo8006/W31rd_Hub/refs/heads/main/Highlights_SimpleSpy")
+		codebox:setRaw()
 		getgenv().SimpleSpy = SimpleSpy
 		getgenv().getNil = function(name, class)
 			for _, v in pairs(getnilinstances()) do
