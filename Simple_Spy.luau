@@ -370,6 +370,12 @@ local keyToString = false
 
 local recordReturnValues = false
 
+local function backgroundUserInput(input)
+end
+
+local function mouseMoved()
+end
+
 function SimpleSpy:ArgsToString(method, args)
 	assert(typeof(method) == "string", "string expected, got " .. typeof(method))
 	assert(typeof(args) == "table", "table expected, got " .. typeof(args))
@@ -579,7 +585,7 @@ function onBarInput(input)
 		local mainPos = Background.AbsolutePosition
 		local offset = mainPos - lastPos
 		local currentPos = offset + lastPos
-		RunService.BindToRenderStep(RunService, "drag", 1, function()
+		RunService:BindToRenderStep("drag", 1, function()
 			local newPos = UserInputService.GetMouseLocation(UserInputService)
 			if newPos ~= lastPos then
 				local currentX = (offset + newPos).X
@@ -1997,7 +2003,7 @@ if not _G.SimpleSpyExecuted then
 		RemoteTemplate.Parent = nil
 		FunctionTemplate.Parent = nil
 		codebox = Highlight.new(CodeBox)
-		codebox:setRaw()
+		codebox:setRaw("")
 		getgenv().SimpleSpy = SimpleSpy
 		getgenv().getNil = function(name, class)
 			for _, v in pairs(getnilinstances()) do
