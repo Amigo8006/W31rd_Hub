@@ -56,7 +56,7 @@ Background.Parent = SimpleSpy2
 Background.BackgroundColor3 = Color3.new(1, 1, 1)
 Background.BackgroundTransparency = 1
 Background.Position = UDim2.new(0, 160, 0, 100)
-Background.Size = UDim2.new(0, 450, 0, 268)
+Background.Size = UDim2.new(0, 500, 0, 268)
 Background.Active = true
 Background.Draggable = true
 
@@ -128,13 +128,13 @@ RightPanel.Parent = Background
 RightPanel.BackgroundColor3 = Color3.fromRGB(37, 36, 38)
 RightPanel.BorderSizePixel = 0
 RightPanel.Position = UDim2.new(0, 131, 0, 19)
-RightPanel.Size = UDim2.new(0, 319, 0, 249)
+RightPanel.Size = UDim2.new(0, 369, 0, 249)
 
 CodeBox.Name = "CodeBox"
 CodeBox.Parent = RightPanel
 CodeBox.BackgroundColor3 = Color3.new(0.0823529, 0.0745098, 0.0784314)
 CodeBox.BorderSizePixel = 0
-CodeBox.Size = UDim2.new(0, 319, 0, 119)
+CodeBox.Size = UDim2.new(0, 369, 0, 119)
 
 ScrollingFrame.Parent = RightPanel
 ScrollingFrame.Active = true
@@ -197,7 +197,7 @@ TopBar.Name = "TopBar"
 TopBar.Parent = Background
 TopBar.BackgroundColor3 = Color3.fromRGB(37, 35, 38)
 TopBar.BorderSizePixel = 0
-TopBar.Size = UDim2.new(0, 450, 0, 19)
+TopBar.Size = UDim2.new(0, 500, 0, 19)
 
 Simple.Name = "Simple"
 Simple.Parent = TopBar
@@ -451,7 +451,7 @@ function newSignal()
 		end,
 		Fire = function(self, ...)
 			for _, f in pairs(connected) do
-				coroutine.wrap(f)(...)
+				task.spawn(f, ...)
 			end
 		end,
 	}
@@ -625,7 +625,7 @@ function fadeOut(elements)
 	local data = {}
 	for _, v in pairs(elements) do
 		if typeof(v) == "Instance" and v:IsA("GuiObject") and v.Visible then
-			coroutine.wrap(function()
+			task.spawn(function()
 				data[v] = {
 					BackgroundTransparency = v.BackgroundTransparency,
 				}
@@ -637,18 +637,18 @@ function fadeOut(elements)
 					data[v].ImageTransparency = v.ImageTransparency
 					TweenService:Create(v, TweenInfo.new(0.5), { ImageTransparency = 1 }):Play()
 				end
-				wait(0.5)
+				task.wait(0.5)
 				v.Visible = false
 				for i, x in pairs(data[v]) do
 					v[i] = x
 				end
 				data[v] = true
-			end)()
+			end)
 		end
 	end
 	return function()
 		for i, _ in pairs(data) do
-			coroutine.wrap(function()
+			task.spawn(function()
 				local properties = {
 					BackgroundTransparency = i.BackgroundTransparency,
 				}
@@ -670,7 +670,7 @@ function fadeOut(elements)
 						:Play()
 				end
 				i.Visible = true
-			end)()
+			end)
 		end
 	end
 end
@@ -687,12 +687,12 @@ function toggleMinimize(override)
 		end
 		LeftPanel.Visible = true
 		TweenService:Create(LeftPanel, TweenInfo.new(0.5), { Size = UDim2.new(0, 131, 0, 0) }):Play()
-		wait(0.5)
+		task.wait(0.5)
 		remotesFadeIn = fadeOut(LeftPanel:GetDescendants())
-		wait(0.5)
+		task.wait(0.5)
 	else
 		TweenService:Create(LeftPanel, TweenInfo.new(0.5), { Size = UDim2.new(0, 131, 0, 249) }):Play()
-		wait(0.5)
+		task.wait(0.5)
 		if remotesFadeIn then
 			remotesFadeIn()
 			remotesFadeIn = nil
@@ -710,9 +710,9 @@ function toggleSideTray(override)
 	sideClosed = not sideClosed
 	if sideClosed then
 		rightFadeIn = fadeOut(RightPanel:GetDescendants())
-		wait(0.5)
+		task.wait(0.5)
 		minimizeSize(0.5)
-		wait(0.5)
+		task.wait(0.5)
 		RightPanel.Visible = false
 	else
 		if closed then
@@ -720,7 +720,7 @@ function toggleSideTray(override)
 		end
 		RightPanel.Visible = true
 		maximizeSize(0.5)
-		wait(0.5)
+		task.wait(0.5)
 		if rightFadeIn then
 			rightFadeIn()
 		end
@@ -765,7 +765,7 @@ function toggleMaximize()
 			TweenService:Create(CodeBox, TweenInfo.new(0.5), { Size = prevSize, Position = prevPos }):Play()
 			TweenService:Create(disable, TweenInfo.new(0.5), { BackgroundTransparency = 1 }):Play()
 			maximized = false
-			wait(0.5)
+			task.wait(0.5)
 			disable:Destroy()
 			CodeBox.Size = UDim2.new(1, 0, 0.5, 0)
 			CodeBox.Position = UDim2.new(0, 0, 0, 0)
@@ -874,10 +874,10 @@ function validateSize()
 	local x, y = Background.AbsoluteSize.X, Background.AbsoluteSize.Y
 	local screenSize = workspace.CurrentCamera.ViewportSize
 	if x + Background.AbsolutePosition.X > screenSize.X then
-		if screenSize.X - Background.AbsolutePosition.X >= 450 then
+		if screenSize.X - Background.AbsolutePosition.X >= 500 then
 			x = screenSize.X - Background.AbsolutePosition.X
 		else
-			x = 450
+			x = 500
 		end
 	elseif y + Background.AbsolutePosition.Y > screenSize.Y then
 		if screenSize.X - Background.AbsolutePosition.Y >= 268 then
@@ -1664,11 +1664,11 @@ function remoteHandler(hookfunction, methodName, remote, args, funcInfo, calling
 		if not calling then
 			_, calling = pcall(getScriptFromSrc, funcInfo.source)
 		end
-		coroutine.wrap(function()
+		task.spawn(function()
 			if remoteSignals[remote] then
 				remoteSignals[remote]:Fire(args)
 			end
-		end)()
+		end)
 		if autoblock then
 			if excluding[remote] then
 				return
@@ -1832,14 +1832,14 @@ local newnamecall = newcclosure(function(remote, ...)
 						returnValue = { original(remote, unpack(args)) }
 					end
 					coroutine.resume(namecallThread, unpack(returnValue))
-					coroutine.wrap(function()
+					task.spawn(function()
 						schedule(remoteHandler, false, methodName, remote, args, funcInfo, calling, returnValue)
-					end)()
+					end)
 				end)
 			else
-				coroutine.wrap(function()
+				task.spawn(function()
 					schedule(remoteHandler, false, methodName, remote, args, funcInfo, calling)
-				end)()
+				end)
 			end
 		end
 		if recordReturnValues and (methodName == "InvokeServer" or methodName == "invokeServer") then
@@ -1922,9 +1922,9 @@ function shutdown()
 		schedulerconnect:Disconnect()
 	end
 	for _, connection in pairs(connections) do
-		coroutine.wrap(function()
+		task.spawn(function()
 			connection:Disconnect()
-		end)()
+		end)
 	end
 	SimpleSpy2:Destroy()
 	hookfunction(remoteEvent.FireServer, originalEvent)
@@ -1954,6 +1954,9 @@ nextb.BackgroundColor3 = Color3.fromRGB(53, 52, 55)
 nextb.Image = "rbxassetid://7072720870"
 nextb.Active = true
 nextb.Draggable = true
+local nextbCorner = Instance.new("UICorner", nextb)
+nextbCorner.CornerRadius = UDim.new(0, 10)
+
 nextb.MouseButton1Down:Connect(function()
 	Background.Visible = not Background.Visible
 	if Background.Visible then
@@ -2028,10 +2031,10 @@ if not _G.SimpleSpyExecuted then
 		table.insert(connections, UserInputService.InputBegan:Connect(backgroundUserInput))
 		connectResize()
 		SimpleSpy2.Enabled = true
-		coroutine.wrap(function()
-			wait(1)
+		task.spawn(function()
+			task.wait(1)
 			onToggleButtonUnhover()
-		end)()
+		end)
 		schedulerconnect = RunService.Heartbeat:Connect(taskscheduler)
 		if syn and syn.protect_gui then
 			pcall(syn.protect_gui, SimpleSpy2)
