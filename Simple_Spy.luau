@@ -41,9 +41,6 @@ local MinimizeButton = Instance.new("TextButton")
 local ImageLabel_3 = Instance.new("ImageLabel")
 local ToolTip = Instance.new("Frame")
 local TextLabel = Instance.new("TextLabel")
-local gui = Instance.new("ScreenGui",Background)
-local nextb = Instance.new("ImageButton", gui)
-local gui = Instance.new("UICorner", nextb)
 
 SimpleSpy2.Name = "W31rd_Hub - Simple Spy"
 SimpleSpy2.ResetOnSpawn = false
@@ -62,17 +59,6 @@ Background.Position = UDim2.new(0, 160, 0, 100)
 Background.Size = UDim2.new(0, 450, 0, 268)
 Background.Active = true
 Background.Draggable = true
-
-nextb.Position = UDim2.new(0,100,0,60)
-nextb.Size = UDim2.new(0,40,0,40)
-nextb.BackgroundColor3 = Color3.fromRGB(53, 52, 55)
-nextb.Image = "rbxassetid://73652125201419"
-nextb.Active = true
-nextb.Draggable = true
-nextb.MouseButton1Down:connect(function()
-nextb.Image = (Background.Visible and "rbxassetid://111003210137015")
-Background.Visible = not Background.Visible
-end)
 
 LeftPanel.Name = "LeftPanel"
 LeftPanel.Parent = Background
@@ -1956,6 +1942,27 @@ function shutdown()
 	_G.SimpleSpyExecuted = false
 end
 
+local buttonGui = Instance.new("ScreenGui")
+buttonGui.Name = "W31rd_Hub_Button"
+buttonGui.ResetOnSpawn = false
+buttonGui.Parent = CoreGui
+
+local nextb = Instance.new("ImageButton", buttonGui)
+nextb.Position = UDim2.new(0, 100, 0, 60)
+nextb.Size = UDim2.new(0, 40, 0, 40)
+nextb.BackgroundColor3 = Color3.fromRGB(53, 52, 55)
+nextb.Image = "rbxassetid://7072720870"
+nextb.Active = true
+nextb.Draggable = true
+nextb.MouseButton1Down:Connect(function()
+	Background.Visible = not Background.Visible
+	if Background.Visible then
+		nextb.Image = "rbxassetid://7072720870"
+	else
+		nextb.Image = "rbxassetid://7072719338"
+	end
+end)
+
 if not _G.SimpleSpyExecuted then
 	local succeeded, err = pcall(function()
 		if not RunService:IsClient() then
@@ -2041,7 +2048,7 @@ if not _G.SimpleSpyExecuted then
 	end)
 	if not succeeded then
 		warn(
-			"A fatal error has occured, SimpleSpy was unable to launch properly.\nPlease DM this error message to @exx#9394:\n\n"
+			"A fatal error has occured, SimpleSpy was unable to launch properly.\nPlease DM this error message to @amigo8006:\n\n"
 				.. tostring(err)
 		)
 		SimpleSpy2:Destroy()
