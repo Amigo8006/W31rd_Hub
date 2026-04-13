@@ -12,10 +12,7 @@ end
 
 local Players = game:GetService("Players")
 local CoreGui = game:GetService("CoreGui")
-local Highlight =
-	loadstring(
-		game:HttpGet("https://raw.githubusercontent.com/Amigo8006/W31rd_Hub/refs/heads/main/Highlights_SimpleSpy.Luau")
-	)()
+local Highlight = loadstring(game:HttpGet("https://raw.githubusercontent.com/Amigo8006/W31rd_Hub/refs/heads/main/Highlights_SimpleSpy.Luau"))()
 
 local SimpleSpy2 = Instance.new("ScreenGui")
 local Background = Instance.new("Frame")
