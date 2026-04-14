@@ -1,5 +1,5 @@
-local version = "v2.2"
-local author = "Redz"
+local version = "v1.3" --its a just modded version
+local author = "zerquesth & Amigo8006" --official SimpleSpy made by Redz
 
 print("---------------------------------------")
 print("SimpleSpy " .. version .. " Loading...")
@@ -33,6 +33,7 @@ local Text_2 = Instance.new("TextLabel")
 local Button_2 = Instance.new("TextButton")
 local TopBar = Instance.new("Frame")
 local Simple = Instance.new("TextButton")
+local DiscordButton = Instance.new("TextButton")
 local CloseButton = Instance.new("TextButton")
 local ImageLabel = Instance.new("ImageLabel")
 local MaximizeButton = Instance.new("TextButton")
@@ -56,7 +57,7 @@ Background.Parent = SimpleSpy2
 Background.BackgroundColor3 = Color3.new(1, 1, 1)
 Background.BackgroundTransparency = 1
 Background.Position = UDim2.new(0, 160, 0, 100)
-Background.Size = UDim2.new(0, 550, 0, 340)
+Background.Size = UDim2.new(0, 550, 0, 370)
 Background.Active = true
 Background.Draggable = true
 
@@ -65,7 +66,7 @@ LeftPanel.Parent = Background
 LeftPanel.BackgroundColor3 = Color3.fromRGB(53, 52, 55)
 LeftPanel.BorderSizePixel = 0
 LeftPanel.Position = UDim2.new(0, 0, 0, 19)
-LeftPanel.Size = UDim2.new(0, 131, 0, 321)
+LeftPanel.Size = UDim2.new(0, 131, 0, 351)
 
 LogList.Name = "LogList"
 LogList.Parent = LeftPanel
@@ -74,7 +75,7 @@ LogList.BackgroundColor3 = Color3.new(1, 1, 1)
 LogList.BackgroundTransparency = 1
 LogList.BorderSizePixel = 0
 LogList.Position = UDim2.new(0, 0, 0, 9)
-LogList.Size = UDim2.new(0, 131, 0, 304)
+LogList.Size = UDim2.new(0, 131, 0, 334)
 LogList.CanvasSize = UDim2.new(0, 0, 0, 0)
 LogList.ScrollBarThickness = 4
 
@@ -128,19 +129,19 @@ RightPanel.Parent = Background
 RightPanel.BackgroundColor3 = Color3.fromRGB(37, 36, 38)
 RightPanel.BorderSizePixel = 0
 RightPanel.Position = UDim2.new(0, 131, 0, 19)
-RightPanel.Size = UDim2.new(0, 419, 0, 321)
+RightPanel.Size = UDim2.new(0, 419, 0, 351)
 
 CodeBox.Name = "CodeBox"
 CodeBox.Parent = RightPanel
 CodeBox.BackgroundColor3 = Color3.new(0.0823529, 0.0745098, 0.0784314)
 CodeBox.BorderSizePixel = 0
-CodeBox.Size = UDim2.new(0, 419, 0, 200)
+CodeBox.Size = UDim2.new(0, 419, 0, 230)
 
 ScrollingFrame.Parent = RightPanel
 ScrollingFrame.Active = true
 ScrollingFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 ScrollingFrame.BackgroundTransparency = 1
-ScrollingFrame.Position = UDim2.new(0, 0, 0, 210)
+ScrollingFrame.Position = UDim2.new(0, 0, 0, 240)
 ScrollingFrame.Size = UDim2.new(1, 0, 0, 110)
 ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
 ScrollingFrame.ScrollBarThickness = 4
@@ -211,6 +212,20 @@ Simple.Text = "W31rd_Hub - Simple Spy [Open Source]"
 Simple.TextColor3 = Color3.new(0, 0, 1)
 Simple.TextSize = 14
 Simple.TextXAlignment = Enum.TextXAlignment.Left
+
+DiscordButton.Name = "DiscordButton"
+DiscordButton.Parent = TopBar
+DiscordButton.BackgroundColor3 = Color3.fromRGB(88, 101, 242)
+DiscordButton.BorderSizePixel = 0
+DiscordButton.Position = UDim2.new(0, 200, 0, 2)
+DiscordButton.Size = UDim2.new(0, 50, 0, 15)
+DiscordButton.Font = Enum.Font.SourceSansBold
+DiscordButton.Text = "Discord"
+DiscordButton.TextColor3 = Color3.new(1, 1, 1)
+DiscordButton.TextSize = 12
+DiscordButton.AutoButtonColor = false
+local discordCorner = Instance.new("UICorner", DiscordButton)
+discordCorner.CornerRadius = UDim.new(0, 4)
 
 CloseButton.Name = "CloseButton"
 CloseButton.Parent = TopBar
@@ -294,6 +309,7 @@ local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
 local ContentProvider = game:GetService("ContentProvider")
 local TextService = game:GetService("TextService")
+local StarterGui = game:GetService("StarterGui")
 local Mouse
 
 local selectedColor = Color3.new(0.321569, 0.333333, 1)
@@ -520,6 +536,17 @@ function onToggleButtonClick()
 	toggleSpyMethod()
 end
 
+function onDiscordButtonClick()
+	setclipboard("https://discord.gg/bQnXyAYTzF")
+	pcall(function()
+		StarterGui:SetCore("SendNotification", {
+			Title = "Discord Invite",
+			Text = "Copied - Now you can go to Discord",
+			Duration = 3,
+		})
+	end)
+end
+
 function connectResize()
 	local lastCam = workspace.CurrentCamera:GetPropertyChangedSignal("ViewportSize"):Connect(bringBackOnResize)
 	workspace:GetPropertyChangedSignal("CurrentCamera"):Connect(function()
@@ -691,7 +718,7 @@ function toggleMinimize(override)
 		remotesFadeIn = fadeOut(LeftPanel:GetDescendants())
 		task.wait(0.5)
 	else
-		TweenService:Create(LeftPanel, TweenInfo.new(0.5), { Size = UDim2.new(0, 131, 0, 321) }):Play()
+		TweenService:Create(LeftPanel, TweenInfo.new(0.5), { Size = UDim2.new(0, 131, 0, 351) }):Play()
 		task.wait(0.5)
 		if remotesFadeIn then
 			remotesFadeIn()
@@ -880,10 +907,10 @@ function validateSize()
 			x = 550
 		end
 	elseif y + Background.AbsolutePosition.Y > screenSize.Y then
-		if screenSize.X - Background.AbsolutePosition.Y >= 340 then
+		if screenSize.X - Background.AbsolutePosition.Y >= 370 then
 			y = screenSize.Y - Background.AbsolutePosition.Y
 		else
-			y = 340
+			y = 370
 		end
 	end
 	Background.Size = UDim2.fromOffset(x, y)
@@ -2023,6 +2050,7 @@ if not _G.SimpleSpyExecuted then
 		MinimizeButton.MouseButton1Click:Connect(toggleMinimize)
 		MaximizeButton.MouseButton1Click:Connect(toggleSideTray)
 		Simple.MouseButton1Click:Connect(onToggleButtonClick)
+		DiscordButton.MouseButton1Click:Connect(onDiscordButtonClick)
 		CloseButton.MouseEnter:Connect(onXButtonHover)
 		CloseButton.MouseLeave:Connect(onXButtonUnhover)
 		Simple.MouseEnter:Connect(onToggleButtonHover)
