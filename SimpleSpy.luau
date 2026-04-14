@@ -1,4 +1,4 @@
-local version = "v1.3" --its a just modded version
+local version = "v1.4" --its a just modded version
 local author = "zerquesth & Amigo8006" --official SimpleSpy made by Redz
 
 print("---------------------------------------")
@@ -135,14 +135,14 @@ CodeBox.Name = "CodeBox"
 CodeBox.Parent = RightPanel
 CodeBox.BackgroundColor3 = Color3.new(0.0823529, 0.0745098, 0.0784314)
 CodeBox.BorderSizePixel = 0
-CodeBox.Size = UDim2.new(0, 419, 0, 230)
+CodeBox.Size = UDim2.new(0, 419, 0, 250)
 
 ScrollingFrame.Parent = RightPanel
 ScrollingFrame.Active = true
 ScrollingFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 ScrollingFrame.BackgroundTransparency = 1
-ScrollingFrame.Position = UDim2.new(0, 0, 0, 240)
-ScrollingFrame.Size = UDim2.new(1, 0, 0, 110)
+ScrollingFrame.Position = UDim2.new(0, 0, 0, 250)
+ScrollingFrame.Size = UDim2.new(1, 0, 0, 90)
 ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
 ScrollingFrame.ScrollBarThickness = 4
 
@@ -215,17 +215,17 @@ Simple.TextXAlignment = Enum.TextXAlignment.Left
 
 DiscordButton.Name = "DiscordButton"
 DiscordButton.Parent = TopBar
-DiscordButton.BackgroundColor3 = Color3.fromRGB(88, 101, 242)
+DiscordButton.BackgroundColor3 = Color3.fromRGB(110, 130, 248)
 DiscordButton.BorderSizePixel = 0
-DiscordButton.Position = UDim2.new(0, 200, 0, 2)
-DiscordButton.Size = UDim2.new(0, 50, 0, 15)
+DiscordButton.Position = UDim2.new(0, 210, 0, 2)
+DiscordButton.Size = UDim2.new(0, 70, 0, 15)
 DiscordButton.Font = Enum.Font.SourceSansBold
 DiscordButton.Text = "Discord"
 DiscordButton.TextColor3 = Color3.new(1, 1, 1)
 DiscordButton.TextSize = 12
 DiscordButton.AutoButtonColor = false
 local discordCorner = Instance.new("UICorner", DiscordButton)
-discordCorner.CornerRadius = UDim.new(0, 4)
+discordCorner.CornerRadius = UDim.new(0, 6)
 
 CloseButton.Name = "CloseButton"
 CloseButton.Parent = TopBar
@@ -829,15 +829,15 @@ function maximizeSize(speed)
 		:Play()
 	TweenService
 		:Create(ScrollingFrame, TweenInfo.new(speed), {
-			Size = UDim2.fromOffset(Background.AbsoluteSize.X - LeftPanel.AbsoluteSize.X, 110),
-			Position = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 110 - TopBar.AbsoluteSize.Y),
+			Size = UDim2.fromOffset(Background.AbsoluteSize.X - LeftPanel.AbsoluteSize.X, 90),
+			Position = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 90 - TopBar.AbsoluteSize.Y),
 		})
 		:Play()
 	TweenService
 		:Create(CodeBox, TweenInfo.new(speed), {
 			Size = UDim2.fromOffset(
 				Background.AbsoluteSize.X - LeftPanel.AbsoluteSize.X,
-				Background.AbsoluteSize.Y - 110 - TopBar.AbsoluteSize.Y
+				Background.AbsoluteSize.Y - 90 - TopBar.AbsoluteSize.Y
 			),
 		})
 		:Play()
@@ -877,15 +877,15 @@ function minimizeSize(speed)
 		:Play()
 	TweenService
 		:Create(ScrollingFrame, TweenInfo.new(speed), {
-			Size = UDim2.fromOffset(0, 110),
-			Position = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 110 - TopBar.AbsoluteSize.Y),
+			Size = UDim2.fromOffset(0, 90),
+			Position = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 90 - TopBar.AbsoluteSize.Y),
 		})
 		:Play()
 	TweenService
 		:Create(
 			CodeBox,
 			TweenInfo.new(speed),
-			{ Size = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 110 - TopBar.AbsoluteSize.Y) }
+			{ Size = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 90 - TopBar.AbsoluteSize.Y) }
 		)
 		:Play()
 	TweenService
