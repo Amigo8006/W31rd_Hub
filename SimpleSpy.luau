@@ -56,7 +56,7 @@ Background.Parent = SimpleSpy2
 Background.BackgroundColor3 = Color3.new(1, 1, 1)
 Background.BackgroundTransparency = 1
 Background.Position = UDim2.new(0, 160, 0, 100)
-Background.Size = UDim2.new(0, 550, 0, 400)
+Background.Size = UDim2.new(0, 550, 0, 340)
 Background.Active = true
 Background.Draggable = true
 
@@ -65,7 +65,7 @@ LeftPanel.Parent = Background
 LeftPanel.BackgroundColor3 = Color3.fromRGB(53, 52, 55)
 LeftPanel.BorderSizePixel = 0
 LeftPanel.Position = UDim2.new(0, 0, 0, 19)
-LeftPanel.Size = UDim2.new(0, 131, 0, 381)
+LeftPanel.Size = UDim2.new(0, 131, 0, 321)
 
 LogList.Name = "LogList"
 LogList.Parent = LeftPanel
@@ -74,7 +74,7 @@ LogList.BackgroundColor3 = Color3.new(1, 1, 1)
 LogList.BackgroundTransparency = 1
 LogList.BorderSizePixel = 0
 LogList.Position = UDim2.new(0, 0, 0, 9)
-LogList.Size = UDim2.new(0, 131, 0, 364)
+LogList.Size = UDim2.new(0, 131, 0, 304)
 LogList.CanvasSize = UDim2.new(0, 0, 0, 0)
 LogList.ScrollBarThickness = 4
 
@@ -128,20 +128,20 @@ RightPanel.Parent = Background
 RightPanel.BackgroundColor3 = Color3.fromRGB(37, 36, 38)
 RightPanel.BorderSizePixel = 0
 RightPanel.Position = UDim2.new(0, 131, 0, 19)
-RightPanel.Size = UDim2.new(0, 419, 0, 381)
+RightPanel.Size = UDim2.new(0, 419, 0, 321)
 
 CodeBox.Name = "CodeBox"
 CodeBox.Parent = RightPanel
 CodeBox.BackgroundColor3 = Color3.new(0.0823529, 0.0745098, 0.0784314)
 CodeBox.BorderSizePixel = 0
-CodeBox.Size = UDim2.new(0, 419, 0, 190)
+CodeBox.Size = UDim2.new(0, 419, 0, 200)
 
 ScrollingFrame.Parent = RightPanel
 ScrollingFrame.Active = true
 ScrollingFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 ScrollingFrame.BackgroundTransparency = 1
-ScrollingFrame.Position = UDim2.new(0, 0, 0.5, 0)
-ScrollingFrame.Size = UDim2.new(1, 0, 0.5, -9)
+ScrollingFrame.Position = UDim2.new(0, 0, 0, 210)
+ScrollingFrame.Size = UDim2.new(1, 0, 0, 110)
 ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
 ScrollingFrame.ScrollBarThickness = 4
 
@@ -691,7 +691,7 @@ function toggleMinimize(override)
 		remotesFadeIn = fadeOut(LeftPanel:GetDescendants())
 		task.wait(0.5)
 	else
-		TweenService:Create(LeftPanel, TweenInfo.new(0.5), { Size = UDim2.new(0, 131, 0, 381) }):Play()
+		TweenService:Create(LeftPanel, TweenInfo.new(0.5), { Size = UDim2.new(0, 131, 0, 321) }):Play()
 		task.wait(0.5)
 		if remotesFadeIn then
 			remotesFadeIn()
@@ -802,15 +802,15 @@ function maximizeSize(speed)
 		:Play()
 	TweenService
 		:Create(ScrollingFrame, TweenInfo.new(speed), {
-			Size = UDim2.fromOffset(Background.AbsoluteSize.X - LeftPanel.AbsoluteSize.X, 191),
-			Position = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 191 - TopBar.AbsoluteSize.Y),
+			Size = UDim2.fromOffset(Background.AbsoluteSize.X - LeftPanel.AbsoluteSize.X, 110),
+			Position = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 110 - TopBar.AbsoluteSize.Y),
 		})
 		:Play()
 	TweenService
 		:Create(CodeBox, TweenInfo.new(speed), {
 			Size = UDim2.fromOffset(
 				Background.AbsoluteSize.X - LeftPanel.AbsoluteSize.X,
-				Background.AbsoluteSize.Y - 191 - TopBar.AbsoluteSize.Y
+				Background.AbsoluteSize.Y - 110 - TopBar.AbsoluteSize.Y
 			),
 		})
 		:Play()
@@ -850,15 +850,15 @@ function minimizeSize(speed)
 		:Play()
 	TweenService
 		:Create(ScrollingFrame, TweenInfo.new(speed), {
-			Size = UDim2.fromOffset(0, 191),
-			Position = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 191 - TopBar.AbsoluteSize.Y),
+			Size = UDim2.fromOffset(0, 110),
+			Position = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 110 - TopBar.AbsoluteSize.Y),
 		})
 		:Play()
 	TweenService
 		:Create(
 			CodeBox,
 			TweenInfo.new(speed),
-			{ Size = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 191 - TopBar.AbsoluteSize.Y) }
+			{ Size = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 110 - TopBar.AbsoluteSize.Y) }
 		)
 		:Play()
 	TweenService
@@ -880,10 +880,10 @@ function validateSize()
 			x = 550
 		end
 	elseif y + Background.AbsolutePosition.Y > screenSize.Y then
-		if screenSize.X - Background.AbsolutePosition.Y >= 400 then
+		if screenSize.X - Background.AbsolutePosition.Y >= 340 then
 			y = screenSize.Y - Background.AbsolutePosition.Y
 		else
-			y = 400
+			y = 340
 		end
 	end
 	Background.Size = UDim2.fromOffset(x, y)
