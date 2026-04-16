@@ -1,5 +1,5 @@
-local version = "v1.4" --its a just modded version
-local author = "zerquesth & Amigo8006" --official SimpleSpy made by Redz
+local version = "v1.5"
+local author = "zerquesth & Amigo8006"
 
 print("---------------------------------------")
 print("SimpleSpy " .. version .. " Loading...")
@@ -47,7 +47,6 @@ SimpleSpy2.Name = "W31rd_Hub - Simple Spy"
 SimpleSpy2.ResetOnSpawn = false
 
 local SpyFind = CoreGui:FindFirstChild(SimpleSpy2.Name)
-
 if SpyFind and SpyFind ~= SimpleSpy2 then
   SpyFind:Destroy()
 end
@@ -57,7 +56,7 @@ Background.Parent = SimpleSpy2
 Background.BackgroundColor3 = Color3.new(1, 1, 1)
 Background.BackgroundTransparency = 1
 Background.Position = UDim2.new(0, 160, 0, 100)
-Background.Size = UDim2.new(0, 550, 0, 370)
+Background.Size = UDim2.new(0, 600, 0, 390)
 Background.Active = true
 Background.Draggable = true
 
@@ -66,7 +65,7 @@ LeftPanel.Parent = Background
 LeftPanel.BackgroundColor3 = Color3.fromRGB(53, 52, 55)
 LeftPanel.BorderSizePixel = 0
 LeftPanel.Position = UDim2.new(0, 0, 0, 19)
-LeftPanel.Size = UDim2.new(0, 131, 0, 351)
+LeftPanel.Size = UDim2.new(0, 180, 0, 371)
 
 LogList.Name = "LogList"
 LogList.Parent = LeftPanel
@@ -75,7 +74,7 @@ LogList.BackgroundColor3 = Color3.new(1, 1, 1)
 LogList.BackgroundTransparency = 1
 LogList.BorderSizePixel = 0
 LogList.Position = UDim2.new(0, 0, 0, 9)
-LogList.Size = UDim2.new(0, 131, 0, 334)
+LogList.Size = UDim2.new(0, 180, 0, 354)
 LogList.CanvasSize = UDim2.new(0, 0, 0, 0)
 LogList.ScrollBarThickness = 4
 
@@ -87,7 +86,7 @@ RemoteTemplate.Name = "RemoteTemplate"
 RemoteTemplate.Parent = LogList
 RemoteTemplate.BackgroundColor3 = Color3.new(1, 1, 1)
 RemoteTemplate.BackgroundTransparency = 1
-RemoteTemplate.Size = UDim2.new(0, 117, 0, 27)
+RemoteTemplate.Size = UDim2.new(0, 166, 0, 27)
 
 ColorBar.Name = "ColorBar"
 ColorBar.Parent = RemoteTemplate
@@ -102,7 +101,7 @@ Text.Parent = RemoteTemplate
 Text.BackgroundColor3 = Color3.new(1, 1, 1)
 Text.BackgroundTransparency = 1
 Text.Position = UDim2.new(0, 12, 0, 1)
-Text.Size = UDim2.new(0, 105, 0, 18)
+Text.Size = UDim2.new(0, 154, 0, 18)
 Text.ZIndex = 2
 Text.Font = Enum.Font.SourceSans
 Text.Text = "TEXT"
@@ -117,7 +116,7 @@ Button.BackgroundColor3 = Color3.new(0, 0, 0)
 Button.BackgroundTransparency = 0.75
 Button.BorderColor3 = Color3.new(1, 1, 1)
 Button.Position = UDim2.new(0, 0, 0, 1)
-Button.Size = UDim2.new(0, 117, 0, 18)
+Button.Size = UDim2.new(0, 166, 0, 18)
 Button.AutoButtonColor = false
 Button.Font = Enum.Font.SourceSans
 Button.Text = ""
@@ -128,21 +127,21 @@ RightPanel.Name = "RightPanel"
 RightPanel.Parent = Background
 RightPanel.BackgroundColor3 = Color3.fromRGB(37, 36, 38)
 RightPanel.BorderSizePixel = 0
-RightPanel.Position = UDim2.new(0, 131, 0, 19)
-RightPanel.Size = UDim2.new(0, 419, 0, 351)
+RightPanel.Position = UDim2.new(0, 180, 0, 19)
+RightPanel.Size = UDim2.new(0, 420, 0, 371)
 
 CodeBox.Name = "CodeBox"
 CodeBox.Parent = RightPanel
 CodeBox.BackgroundColor3 = Color3.new(0.0823529, 0.0745098, 0.0784314)
 CodeBox.BorderSizePixel = 0
-CodeBox.Size = UDim2.new(0, 419, 0, 250)
+CodeBox.Size = UDim2.new(0, 420, 0, 250)
 
 ScrollingFrame.Parent = RightPanel
 ScrollingFrame.Active = true
 ScrollingFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 ScrollingFrame.BackgroundTransparency = 1
 ScrollingFrame.Position = UDim2.new(0, 0, 0, 250)
-ScrollingFrame.Size = UDim2.new(1, 0, 0, 90)
+ScrollingFrame.Size = UDim2.new(1, 0, 0, 110)
 ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
 ScrollingFrame.ScrollBarThickness = 4
 
@@ -198,7 +197,7 @@ TopBar.Name = "TopBar"
 TopBar.Parent = Background
 TopBar.BackgroundColor3 = Color3.fromRGB(37, 35, 38)
 TopBar.BorderSizePixel = 0
-TopBar.Size = UDim2.new(0, 550, 0, 19)
+TopBar.Size = UDim2.new(0, 600, 0, 19)
 
 Simple.Name = "Simple"
 Simple.Parent = TopBar
@@ -368,6 +367,8 @@ local useGetCallingScript = false
 local keyToString = false
 
 local recordReturnValues = false
+
+local remoteGroups = {}
 
 local function backgroundUserInput(input)
 end
@@ -567,11 +568,11 @@ function bringBackOnResize()
 	local currentX = Background.AbsolutePosition.X
 	local currentY = Background.AbsolutePosition.Y
 	local viewportSize = workspace.CurrentCamera.ViewportSize
-	if (currentX < 0) or (currentX > (viewportSize.X - (sideClosed and 131 or Background.AbsoluteSize.X))) then
+	if (currentX < 0) or (currentX > (viewportSize.X - (sideClosed and 180 or Background.AbsoluteSize.X))) then
 		if currentX < 0 then
 			currentX = 0
 		else
-			currentX = viewportSize.X - (sideClosed and 131 or Background.AbsoluteSize.X)
+			currentX = viewportSize.X - (sideClosed and 180 or Background.AbsoluteSize.X)
 		end
 	end
 	if (currentY < 0) or (currentY > (viewportSize.Y - (closed and 19 or Background.AbsoluteSize.Y) - 36)) then
@@ -604,14 +605,14 @@ function onBarInput(input)
 				if
 					(currentX < 0 and currentX < currentPos.X)
 					or (
-						currentX > (viewportSize.X - (sideClosed and 131 or TopBar.AbsoluteSize.X))
+						currentX > (viewportSize.X - (sideClosed and 180 or TopBar.AbsoluteSize.X))
 						and currentX > currentPos.X
 					)
 				then
 					if currentX < 0 then
 						currentX = 0
 					else
-						currentX = viewportSize.X - (sideClosed and 131 or TopBar.AbsoluteSize.X)
+						currentX = viewportSize.X - (sideClosed and 180 or TopBar.AbsoluteSize.X)
 					end
 				end
 				if
@@ -713,12 +714,12 @@ function toggleMinimize(override)
 			toggleSideTray(true)
 		end
 		LeftPanel.Visible = true
-		TweenService:Create(LeftPanel, TweenInfo.new(0.5), { Size = UDim2.new(0, 131, 0, 0) }):Play()
+		TweenService:Create(LeftPanel, TweenInfo.new(0.5), { Size = UDim2.new(0, 180, 0, 0) }):Play()
 		task.wait(0.5)
 		remotesFadeIn = fadeOut(LeftPanel:GetDescendants())
 		task.wait(0.5)
 	else
-		TweenService:Create(LeftPanel, TweenInfo.new(0.5), { Size = UDim2.new(0, 131, 0, 351) }):Play()
+		TweenService:Create(LeftPanel, TweenInfo.new(0.5), { Size = UDim2.new(0, 180, 0, 371) }):Play()
 		task.wait(0.5)
 		if remotesFadeIn then
 			remotesFadeIn()
@@ -829,15 +830,15 @@ function maximizeSize(speed)
 		:Play()
 	TweenService
 		:Create(ScrollingFrame, TweenInfo.new(speed), {
-			Size = UDim2.fromOffset(Background.AbsoluteSize.X - LeftPanel.AbsoluteSize.X, 90),
-			Position = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 90 - TopBar.AbsoluteSize.Y),
+			Size = UDim2.fromOffset(Background.AbsoluteSize.X - LeftPanel.AbsoluteSize.X, 110),
+			Position = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 110 - TopBar.AbsoluteSize.Y),
 		})
 		:Play()
 	TweenService
 		:Create(CodeBox, TweenInfo.new(speed), {
 			Size = UDim2.fromOffset(
 				Background.AbsoluteSize.X - LeftPanel.AbsoluteSize.X,
-				Background.AbsoluteSize.Y - 90 - TopBar.AbsoluteSize.Y
+				Background.AbsoluteSize.Y - 110 - TopBar.AbsoluteSize.Y
 			),
 		})
 		:Play()
@@ -845,7 +846,7 @@ function maximizeSize(speed)
 		:Create(
 			LogList,
 			TweenInfo.new(speed),
-			{ Size = UDim2.fromOffset(LogList.AbsoluteSize.X, Background.AbsoluteSize.Y - TopBar.AbsoluteSize.Y - 18) }
+			{ Size = UDim2.fromOffset(LogList.AbsoluteSize.X, Background.AbsoluteSize.Y - TopBar.AbsoluteSize.Y - 9) }
 		)
 		:Play()
 end
@@ -877,22 +878,22 @@ function minimizeSize(speed)
 		:Play()
 	TweenService
 		:Create(ScrollingFrame, TweenInfo.new(speed), {
-			Size = UDim2.fromOffset(0, 90),
-			Position = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 90 - TopBar.AbsoluteSize.Y),
+			Size = UDim2.fromOffset(0, 110),
+			Position = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 110 - TopBar.AbsoluteSize.Y),
 		})
 		:Play()
 	TweenService
 		:Create(
 			CodeBox,
 			TweenInfo.new(speed),
-			{ Size = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 90 - TopBar.AbsoluteSize.Y) }
+			{ Size = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 110 - TopBar.AbsoluteSize.Y) }
 		)
 		:Play()
 	TweenService
 		:Create(
 			LogList,
 			TweenInfo.new(speed),
-			{ Size = UDim2.fromOffset(LogList.AbsoluteSize.X, Background.AbsoluteSize.Y - TopBar.AbsoluteSize.Y - 18) }
+			{ Size = UDim2.fromOffset(LogList.AbsoluteSize.X, Background.AbsoluteSize.Y - TopBar.AbsoluteSize.Y - 9) }
 		)
 		:Play()
 end
@@ -901,16 +902,16 @@ function validateSize()
 	local x, y = Background.AbsoluteSize.X, Background.AbsoluteSize.Y
 	local screenSize = workspace.CurrentCamera.ViewportSize
 	if x + Background.AbsolutePosition.X > screenSize.X then
-		if screenSize.X - Background.AbsolutePosition.X >= 550 then
+		if screenSize.X - Background.AbsolutePosition.X >= 600 then
 			x = screenSize.X - Background.AbsolutePosition.X
 		else
-			x = 550
+			x = 600
 		end
 	elseif y + Background.AbsolutePosition.Y > screenSize.Y then
-		if screenSize.X - Background.AbsolutePosition.Y >= 370 then
+		if screenSize.X - Background.AbsolutePosition.Y >= 390 then
 			y = screenSize.Y - Background.AbsolutePosition.Y
 		else
-			y = 370
+			y = 390
 		end
 	end
 	Background.Size = UDim2.fromOffset(x, y)
@@ -1015,8 +1016,27 @@ function newButton(name, description, onClick)
 end
 
 function newRemote(type, name, args, remote, function_info, blocked, src, returnValue)
+	local key = tostring(remote) .. "_" .. (type == "event" and "E" or "F")
+	local displayName = name
+	if #displayName > 25 then
+		displayName = string.sub(displayName, 1, 22) .. "..."
+	end
+	if remoteGroups[key] then
+		local group = remoteGroups[key]
+		group.count = group.count + 1
+		group.remoteFrame.Text.Text = displayName .. " (x" .. group.count .. ")"
+		group.log.GenScript = genScript(remote, args)
+		if blocked then
+			group.log.GenScript = "-- THIS REMOTE WAS PREVENTED FROM FIRING THE SERVER BY SIMPLESPY\n\n" .. group.log.GenScript
+		end
+		if selected == group.log then
+			codebox:setRaw(group.log.GenScript)
+		end
+		return
+	end
+
 	local remoteFrame = RemoteTemplate:Clone()
-	remoteFrame.Text.Text = string.sub(name, 1, 50)
+	remoteFrame.Text.Text = displayName .. " (x1)"
 	remoteFrame.ColorBar.BackgroundColor3 = type == "event" and Color3.new(255, 242, 0) or Color3.fromRGB(99, 86, 245)
 	local id = Instance.new("IntValue")
 	id.Name = "ID"
@@ -1051,6 +1071,11 @@ function newRemote(type, name, args, remote, function_info, blocked, src, return
 	layoutOrderNum = layoutOrderNum - 1
 	remoteFrame.Parent = LogList
 	table.insert(remoteLogs, 1, { connect, remoteFrame })
+	remoteGroups[key] = {
+		remoteFrame = remoteFrame,
+		log = log,
+		count = 1,
+	}
 	clean()
 	updateRemoteCanvas()
 end
@@ -2159,6 +2184,7 @@ newButton("Clr Logs", function()
 end, function()
 	TextLabel.Text = "Clearing..."
 	logs = {}
+	remoteGroups = {}
 	for _, v in pairs(LogList:GetChildren()) do
 		if not v:IsA("UIListLayout") then
 			v:Destroy()
