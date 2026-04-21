@@ -1,4 +1,4 @@
-local version = "v1.6"
+local version = "v1.6.1"
 local author = "zerquesth & Amigo8006"
 
 print("---------------------------------------")
@@ -56,7 +56,7 @@ Background.Parent = SimpleSpy2
 Background.BackgroundColor3 = Color3.new(1, 1, 1)
 Background.BackgroundTransparency = 1
 Background.Position = UDim2.new(0, 160, 0, 100)
-Background.Size = UDim2.new(0, 600, 0, 330)
+Background.Size = UDim2.new(0, 590, 0, 290)
 Background.Active = true
 Background.Draggable = true
 
@@ -65,7 +65,7 @@ LeftPanel.Parent = Background
 LeftPanel.BackgroundColor3 = Color3.fromRGB(53, 52, 55)
 LeftPanel.BorderSizePixel = 0
 LeftPanel.Position = UDim2.new(0, 0, 0, 19)
-LeftPanel.Size = UDim2.new(0, 180, 0, 311)
+LeftPanel.Size = UDim2.new(0, 170, 0, 271)
 
 LogList.Name = "LogList"
 LogList.Parent = LeftPanel
@@ -74,7 +74,7 @@ LogList.BackgroundColor3 = Color3.new(1, 1, 1)
 LogList.BackgroundTransparency = 1
 LogList.BorderSizePixel = 0
 LogList.Position = UDim2.new(0, 0, 0, 9)
-LogList.Size = UDim2.new(0, 180, 0, 294)
+LogList.Size = UDim2.new(0, 170, 0, 254)
 LogList.CanvasSize = UDim2.new(0, 0, 0, 0)
 LogList.ScrollBarThickness = 4
 
@@ -86,7 +86,7 @@ RemoteTemplate.Name = "RemoteTemplate"
 RemoteTemplate.Parent = LogList
 RemoteTemplate.BackgroundColor3 = Color3.new(1, 1, 1)
 RemoteTemplate.BackgroundTransparency = 1
-RemoteTemplate.Size = UDim2.new(0, 166, 0, 27)
+RemoteTemplate.Size = UDim2.new(0, 156, 0, 27)
 
 ColorBar.Name = "ColorBar"
 ColorBar.Parent = RemoteTemplate
@@ -101,7 +101,7 @@ Text.Parent = RemoteTemplate
 Text.BackgroundColor3 = Color3.new(1, 1, 1)
 Text.BackgroundTransparency = 1
 Text.Position = UDim2.new(0, 12, 0, 1)
-Text.Size = UDim2.new(0, 154, 0, 18)
+Text.Size = UDim2.new(0, 144, 0, 18)
 Text.ZIndex = 2
 Text.Font = Enum.Font.SourceSans
 Text.Text = "TEXT"
@@ -116,7 +116,7 @@ Button.BackgroundColor3 = Color3.new(0, 0, 0)
 Button.BackgroundTransparency = 0.75
 Button.BorderColor3 = Color3.new(1, 1, 1)
 Button.Position = UDim2.new(0, 0, 0, 1)
-Button.Size = UDim2.new(0, 166, 0, 18)
+Button.Size = UDim2.new(0, 156, 0, 18)
 Button.AutoButtonColor = false
 Button.Font = Enum.Font.SourceSans
 Button.Text = ""
@@ -127,21 +127,21 @@ RightPanel.Name = "RightPanel"
 RightPanel.Parent = Background
 RightPanel.BackgroundColor3 = Color3.fromRGB(37, 36, 38)
 RightPanel.BorderSizePixel = 0
-RightPanel.Position = UDim2.new(0, 180, 0, 19)
-RightPanel.Size = UDim2.new(0, 420, 0, 311)
+RightPanel.Position = UDim2.new(0, 170, 0, 19)
+RightPanel.Size = UDim2.new(0, 420, 0, 271)
 
 CodeBox.Name = "CodeBox"
 CodeBox.Parent = RightPanel
 CodeBox.BackgroundColor3 = Color3.new(0.0823529, 0.0745098, 0.0784314)
 CodeBox.BorderSizePixel = 0
-CodeBox.Size = UDim2.new(0, 420, 0, 210)
+CodeBox.Size = UDim2.new(0, 420, 0, 160)
 
 ScrollingFrame.Parent = RightPanel
 ScrollingFrame.Active = true
 ScrollingFrame.BackgroundColor3 = Color3.new(1, 1, 1)
 ScrollingFrame.BackgroundTransparency = 1
-ScrollingFrame.Position = UDim2.new(0, 0, 0, 210)
-ScrollingFrame.Size = UDim2.new(1, 0, 0, 91)
+ScrollingFrame.Position = UDim2.new(0, 0, 0, 160)
+ScrollingFrame.Size = UDim2.new(1, 0, 0, 101)
 ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 0)
 ScrollingFrame.ScrollBarThickness = 4
 
@@ -197,7 +197,7 @@ TopBar.Name = "TopBar"
 TopBar.Parent = Background
 TopBar.BackgroundColor3 = Color3.fromRGB(37, 35, 38)
 TopBar.BorderSizePixel = 0
-TopBar.Size = UDim2.new(0, 600, 0, 19)
+TopBar.Size = UDim2.new(0, 590, 0, 19)
 
 Simple.Name = "Simple"
 Simple.Parent = TopBar
@@ -217,7 +217,7 @@ DiscordButton.Parent = TopBar
 DiscordButton.BackgroundColor3 = Color3.fromRGB(110, 130, 248)
 DiscordButton.BorderSizePixel = 0
 DiscordButton.Position = UDim2.new(0, 210, 0, 2)
-DiscordButton.Size = UDim2.new(0, 70, 0, 15)
+DiscordButton.Size = UDim2.new(0, 60, 0, 15)
 DiscordButton.Font = Enum.Font.SourceSansBold
 DiscordButton.Text = "Discord"
 DiscordButton.TextColor3 = Color3.new(1, 1, 1)
@@ -566,11 +566,11 @@ function bringBackOnResize()
 	local currentX = Background.AbsolutePosition.X
 	local currentY = Background.AbsolutePosition.Y
 	local viewportSize = workspace.CurrentCamera.ViewportSize
-	if (currentX < 0) or (currentX > (viewportSize.X - (sideClosed and 180 or Background.AbsoluteSize.X))) then
+	if (currentX < 0) or (currentX > (viewportSize.X - (sideClosed and 170 or Background.AbsoluteSize.X))) then
 		if currentX < 0 then
 			currentX = 0
 		else
-			currentX = viewportSize.X - (sideClosed and 180 or Background.AbsoluteSize.X)
+			currentX = viewportSize.X - (sideClosed and 170 or Background.AbsoluteSize.X)
 		end
 	end
 	if (currentY < 0) or (currentY > (viewportSize.Y - (closed and 19 or Background.AbsoluteSize.Y) - 36)) then
@@ -603,14 +603,14 @@ function onBarInput(input)
 				if
 					(currentX < 0 and currentX < currentPos.X)
 					or (
-						currentX > (viewportSize.X - (sideClosed and 180 or TopBar.AbsoluteSize.X))
+						currentX > (viewportSize.X - (sideClosed and 170 or TopBar.AbsoluteSize.X))
 						and currentX > currentPos.X
 					)
 				then
 					if currentX < 0 then
 						currentX = 0
 					else
-						currentX = viewportSize.X - (sideClosed and 180 or TopBar.AbsoluteSize.X)
+						currentX = viewportSize.X - (sideClosed and 170 or TopBar.AbsoluteSize.X)
 					end
 				end
 				if
@@ -712,12 +712,12 @@ function toggleMinimize(override)
 			toggleSideTray(true)
 		end
 		LeftPanel.Visible = true
-		TweenService:Create(LeftPanel, TweenInfo.new(0.5), { Size = UDim2.new(0, 180, 0, 0) }):Play()
+		TweenService:Create(LeftPanel, TweenInfo.new(0.5), { Size = UDim2.new(0, 170, 0, 0) }):Play()
 		task.wait(0.5)
 		remotesFadeIn = fadeOut(LeftPanel:GetDescendants())
 		task.wait(0.5)
 	else
-		TweenService:Create(LeftPanel, TweenInfo.new(0.5), { Size = UDim2.new(0, 180, 0, 311) }):Play()
+		TweenService:Create(LeftPanel, TweenInfo.new(0.5), { Size = UDim2.new(0, 170, 0, 271) }):Play()
 		task.wait(0.5)
 		if remotesFadeIn then
 			remotesFadeIn()
@@ -828,15 +828,15 @@ function maximizeSize(speed)
 		:Play()
 	TweenService
 		:Create(ScrollingFrame, TweenInfo.new(speed), {
-			Size = UDim2.fromOffset(Background.AbsoluteSize.X - LeftPanel.AbsoluteSize.X, 91),
-			Position = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 91 - TopBar.AbsoluteSize.Y),
+			Size = UDim2.fromOffset(Background.AbsoluteSize.X - LeftPanel.AbsoluteSize.X, 101),
+			Position = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 101 - TopBar.AbsoluteSize.Y),
 		})
 		:Play()
 	TweenService
 		:Create(CodeBox, TweenInfo.new(speed), {
 			Size = UDim2.fromOffset(
 				Background.AbsoluteSize.X - LeftPanel.AbsoluteSize.X,
-				Background.AbsoluteSize.Y - 91 - TopBar.AbsoluteSize.Y
+				Background.AbsoluteSize.Y - 101 - TopBar.AbsoluteSize.Y
 			),
 		})
 		:Play()
@@ -876,15 +876,15 @@ function minimizeSize(speed)
 		:Play()
 	TweenService
 		:Create(ScrollingFrame, TweenInfo.new(speed), {
-			Size = UDim2.fromOffset(0, 91),
-			Position = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 91 - TopBar.AbsoluteSize.Y),
+			Size = UDim2.fromOffset(0, 101),
+			Position = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 101 - TopBar.AbsoluteSize.Y),
 		})
 		:Play()
 	TweenService
 		:Create(
 			CodeBox,
 			TweenInfo.new(speed),
-			{ Size = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 91 - TopBar.AbsoluteSize.Y) }
+			{ Size = UDim2.fromOffset(0, Background.AbsoluteSize.Y - 101 - TopBar.AbsoluteSize.Y) }
 		)
 		:Play()
 	TweenService
@@ -900,16 +900,16 @@ function validateSize()
 	local x, y = Background.AbsoluteSize.X, Background.AbsoluteSize.Y
 	local screenSize = workspace.CurrentCamera.ViewportSize
 	if x + Background.AbsolutePosition.X > screenSize.X then
-		if screenSize.X - Background.AbsolutePosition.X >= 600 then
+		if screenSize.X - Background.AbsolutePosition.X >= 590 then
 			x = screenSize.X - Background.AbsolutePosition.X
 		else
-			x = 600
+			x = 590
 		end
 	elseif y + Background.AbsolutePosition.Y > screenSize.Y then
-		if screenSize.X - Background.AbsolutePosition.Y >= 330 then
+		if screenSize.X - Background.AbsolutePosition.Y >= 290 then
 			y = screenSize.Y - Background.AbsolutePosition.Y
 		else
-			y = 330
+			y = 290
 		end
 	end
 	Background.Size = UDim2.fromOffset(x, y)
